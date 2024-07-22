@@ -8,7 +8,7 @@ gem 'activerecord'
 gem 'sqlite3', '~> 1.4'
 
 # デバッグ関連
-gem 'pry-rails', '0.3.11'
+gem 'pry', '0.14.2'
 
 # プロジェクト内コマンド
 gem 'rake', '13.2.1'

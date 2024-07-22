@@ -38,8 +38,6 @@ GEM
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
-    pry-rails (0.3.11)
-      pry (>= 0.13.0)
     rake (13.2.1)
     sqlite3 (1.7.3)
       mini_portile2 (~> 2.8.0)
@@ -109,7 +107,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord
-  pry-rails (= 0.3.11)
+  pry (= 0.14.2)
   rake (= 13.2.1)
   sqlite3 (~> 1.4)
   tty (= 0.7.0)
