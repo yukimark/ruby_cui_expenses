@@ -1,6 +1,6 @@
 require 'tty'
 
-def show_display_menu
+def display_menu_top
   choice_menu = TTY::Prompt.new.select('メニューを選んでください。') do |menu|
     menu.choice 'お小遣い帳入力', {num: 1}
     menu.choice 'お小遣い帳一覧', {num: 2}

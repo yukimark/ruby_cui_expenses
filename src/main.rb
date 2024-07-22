@@ -2,7 +2,7 @@ require_relative 'show_display_menu'
 
 def main
   loop do
-    menu_num = show_display_menu
+    menu_num = display_menu_top
 
     case menu_num
     when 1
