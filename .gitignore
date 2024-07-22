@@ -1,2 +1,3 @@
 # DB周り
 *.sqlite3*
+db/schema.rb
