@@ -1,8 +1,8 @@
-require_relative 'show_display_menu'
+require_relative 'module/view'
 
 def main
   loop do
-    menu_num = display_menu_top
+    menu_num = View.top
 
     case menu_num
     when 1
