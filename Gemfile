@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 # メニュー画面
 gem 'tty', '0.7.0'
+gem 'tabulo'
 
 # DB関連
 gem 'activerecord'

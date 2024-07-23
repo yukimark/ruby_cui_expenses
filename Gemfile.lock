@@ -42,6 +42,7 @@ GEM
     sqlite3 (1.7.3)
       mini_portile2 (~> 2.8.0)
     sqlite3 (1.7.3-x86_64-linux)
+    tabulo (1.2.2)
     timeout (0.4.1)
     tty (0.7.0)
       equatable (~> 0.5.0)
@@ -110,6 +111,7 @@ DEPENDENCIES
   pry (= 0.14.2)
   rake (= 13.2.1)
   sqlite3 (~> 1.4)
+  tabulo
   tty (= 0.7.0)
 
 BUNDLED WITH

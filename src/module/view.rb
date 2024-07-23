@@ -1,5 +1,6 @@
 require 'tty'
 require 'pry'
+require 'tabulo'
 
 module View
   class << self
@@ -31,7 +32,13 @@ module View
     end
 
     def spend_index(spends)
-      
+      table = Tabulo::Table.new(spends) do |t|
+        t.add_column("項目", &:category)
+        t.add_column("金額", &:price)
+        t.add_column("固定費", &:fixedcost)
+        t.add_column("後払い", &:deferredpay)
+      end
+      puts table
       # binding.pry
     end
   end

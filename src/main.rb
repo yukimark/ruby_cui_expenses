@@ -12,8 +12,7 @@ def main
       add_spend
     when 2
       spends = all_spend
-      # View.spend_index(spends)
-      p spends
+      View.spend_index(spends)
     when 3
       p 'アプリを終了します'
       break
