@@ -13,7 +13,13 @@ def add_spend
   spend.fixedcost = View.boolean('固定費ですか?')
   View.line(2)
   spend.deferredpay = View.boolean('カードなどの後払いですか?')
-  spend.save
+  View.line(2)
+  if View.confirm(content: spend, message: '上記の内容で登録しますか?')
+    spend.save
+  else
+    puts '保存できませんでした。'
+    return
+  end
 end
 
 def all_spend

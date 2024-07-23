@@ -9,6 +9,21 @@ module View
       end
     end
 
+    def confirm(content: nil, message: '進めていいですか?')
+      if content.is_a?(ActiveRecord::Base) #modelを想定している
+        excluded_attributes = %w[id created_at updated_at]
+        attributes = content.attributes.except(*excluded_attributes)
+        title = HighLine.new()
+        puts title.color('確認画面です。', :green)
+        attributes.each do |key, value|
+          puts "#{key}: #{value}"
+        end
+        View.boolean(message)
+      else
+        View.boolean(message)
+      end
+    end
+
     def top
       choices = {
         'a' => 'お小遣い帳入力',
