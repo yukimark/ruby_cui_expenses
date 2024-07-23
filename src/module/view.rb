@@ -27,7 +27,7 @@ module View
         menu.choice 'YES', {num: 1}
         menu.choice 'NO',  {num: 0}
       end
-      choice_menu
+      choice_menu[:num]
     end
 
     def spend_index(spends)
