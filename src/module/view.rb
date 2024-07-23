@@ -9,6 +9,14 @@ module View
       end
     end
 
+    def confirm(content: nil, message: '進めてよろしいですか?')
+      if content.present? # ハッシュを想定
+        View.boolean(message)
+      else
+        View.boolean(message)
+      end
+    end
+
     def top
       choices = {
         'a' => 'お小遣い帳入力',
