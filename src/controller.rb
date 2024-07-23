@@ -17,6 +17,7 @@ def add_spend
   if View.confirm(content: spend, message: '上記の内容で登録しますか?')
     spend.save
   else
+    puts '保存できませんでした。'
     return
   end
 end
