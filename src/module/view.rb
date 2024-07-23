@@ -1,45 +1,66 @@
-require 'tty'
+require 'highline/import'
 require 'pry'
-require 'tabulo'
 
 module View
   class << self
-    def top
-      choice_menu = TTY::Prompt.new.select('メニューを選んでください。') do |menu|
-        menu.choice 'お小遣い帳入力', {num: 1}
-        menu.choice 'お小遣い帳一覧', {num: 2}
-        menu.choice '終了',           {num: 3}
+    def line(i)
+      i.times do
+        puts '----------------------------------------------------------------------------------'
       end
-    
-      choice_menu[:num]
+    end
+
+    def top
+      choices = {
+        'a' => 'お小遣い帳入力',
+        's' => 'お小遣い帳一覧',
+        ';' => '終了する'
+      }
+
+      choice = select_menu('メニューを選択してください。', choices)
+
+      selected_value = choice
+      selected_value
     end
 
     def spend_category
-      choice_menu = TTY::Prompt.new.select('カテゴリーを選んでください。') do |menu|
-        menu.choice '食費'
-        menu.choice '日用品'
-        menu.choice '家賃'
-      end
-      choice_menu
+      choices = {
+        'a' => '食費',
+        's' => '日用品',
+        'd' => '家賃'
+      }
+
+      choice = select_menu('項目を選択してください。', choices)
+
+      selected_value = choices[choice]
+      selected_value
     end
 
     def boolean(desc)
-      choice_menu = TTY::Prompt.new.select(desc) do |menu|
-        menu.choice 'YES', {num: 1}
-        menu.choice 'NO',  {num: 0}
-      end
-      choice_menu[:num]
+      choices = {
+        'y' => 'Yes',
+        'n' => 'No'
+      }
+
+      choice = select_menu(desc, choices)
+      selected_value = choice == 'y' ? true : false
+      selected_value
     end
 
     def spend_index(spends)
-      table = Tabulo::Table.new(spends) do |t|
-        t.add_column("項目", &:category)
-        t.add_column("金額", &:price)
-        t.add_column("固定費", &:fixedcost)
-        t.add_column("後払い", &:deferredpay)
-      end
-      puts table
+      p Spend.all
       # binding.pry
     end
   end
+end
+
+private
+def select_menu(message, choices)
+  title = HighLine.new
+  puts title.color(message, :green)
+  choices.each do |key, name|
+    say("#{key}: #{name}")
+  end
+
+  choice = ask('選択肢に対応したキーを入力してください。') { |q| q.in = choices.keys }
+  choice
 end

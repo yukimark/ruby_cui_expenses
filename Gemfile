@@ -1,8 +1,7 @@
 source 'https://rubygems.org'
 
 # メニュー画面
-gem 'tty', '0.7.0'
-gem 'tabulo'
+gem 'highline'
 
 # DB関連
 gem 'activerecord'

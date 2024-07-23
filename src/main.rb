@@ -5,16 +5,20 @@ require_relative 'module/db'
 def main
   DB.connect
   loop do
-    menu_num = View.top
+    View.line(1)
+    menu_str = View.top
 
-    case menu_num
-    when 1
+    case menu_str
+    when "a"
       add_spend
-    when 2
+      View.line(2)
+    when "s"
       spends = all_spend
       View.spend_index(spends)
-    when 3
-      p 'アプリを終了します'
+      View.line(2)
+    when ";"
+      View.line(1)
+      puts 'アプリを終了します'
       break
     end
   end
