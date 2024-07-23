@@ -55,8 +55,8 @@ end
 
 private
 def select_menu(message, choices)
-  say(message)
-  # puts Highline.new.color(message, :green)
+  title = HighLine.new
+  puts title.color(message, :green)
   choices.each do |key, name|
     say("#{key}: #{name}")
   end
