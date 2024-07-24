@@ -18,8 +18,10 @@ module View
         attributes.each do |key, value|
           puts "#{key}: #{value}"
         end
+        View.line(2)
         View.boolean(message)
       else
+        View.line(2)
         View.boolean(message)
       end
     end
