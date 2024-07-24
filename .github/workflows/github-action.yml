@@ -1,0 +1,23 @@
+name: Run Rubocop
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  Job-Rubocop:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Ruby Env
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3.3'
+          bundler-cache: true
+
+      - name: Run lint
+        run: bundle exec rubocop
