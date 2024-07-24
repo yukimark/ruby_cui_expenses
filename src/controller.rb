@@ -29,3 +29,32 @@ end
 def all_spend
   Spend.all
 end
+
+def delete_spend_last
+  spend = Spend.last
+  delete_spend_confirm(spend)
+end
+
+def delete_spend_find_id
+  View.line(2)
+  View.color_message('IDを入力してください。', :green)
+  id = gets.chomp.to_i
+  begin
+    spend = Spend.find(id)
+  rescue StandardError
+    View.color_message('データが見つかりません。', :red)
+    return
+  end
+  delete_spend_confirm(spend)
+end
+
+private
+
+def delete_spend_confirm(spend)
+  View.line(2)
+  if View.confirm(content: spend, message: '上記の内容を削除しますか?') && spend.delete
+    View.color_message('削除しました。', :red)
+  else
+    View.color_message('削除できませんでした。', :red)
+  end
+end
