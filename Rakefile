@@ -19,18 +19,18 @@ namespace :db do
     migration_file = File.join(migration_dir, migration_name)
 
     File.open(migration_file, 'w') do |file|
-      file.write <<-MIGRATION
-class #{file_name.split('_').map(&:capitalize).join} < ActiveRecord::Migration[7.1]
-  def change
-    # Your migration code goes here
-  end
-end
+      file.write <<~MIGRATION
+        class #{file_name.split('_').map(&:capitalize).join} < ActiveRecord::Migration[7.1]
+          def change
+            # Your migration code goes here
+          end
+        end
       MIGRATION
     end
 
     puts "Created migration #{migration_file}"
   end
-  
+
   desc "Migrate the database"
   task :migrate do
     DB.connect
@@ -59,4 +59,3 @@ desc "Run application"
 task :run do
   system "bundle exec ruby src/main.rb"
 end
-

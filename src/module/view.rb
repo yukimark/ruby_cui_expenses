@@ -10,7 +10,7 @@ module View
     end
 
     def confirm(content: nil, message: '進めていいですか?')
-      if content.is_a?(ActiveRecord::Base) #modelを想定している
+      if content.is_a?(ActiveRecord::Base) # modelを想定している
         excluded_attributes = %w[id created_at updated_at]
         attributes = content.attributes.except(*excluded_attributes)
         title = HighLine.new()
@@ -69,6 +69,7 @@ module View
 end
 
 private
+
 def select_menu(message, choices)
   title = HighLine.new
   puts title.color(message, :green)
