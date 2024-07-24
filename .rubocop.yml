@@ -1,0 +1,28 @@
+inherit_from: .rubocop_todo.yml
+
+Metrics/MethodLength:
+  Max: 30
+  Exclude:
+    - 'src/main.rb'
+
+Metrics/AbcSize:
+  Exclude:
+    - 'src/controller.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'Rakefile'
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/NumericLiterals:
+  Exclude:
+    - 'db/schema.rb'
+
+Style/StringLiterals:
+  Exclude:
+    - 'db/schema.rb'

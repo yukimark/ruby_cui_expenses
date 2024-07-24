@@ -9,16 +9,17 @@ def main
     menu_str = View.top
 
     case menu_str
-    when "a"
+    when 'a'
       add_spend
       View.line(2)
-    when "s"
+    when 's'
       spends = all_spend
       View.spend_index(spends)
       View.line(2)
-    when ";"
+    when ';'
       View.line(1)
-      puts 'アプリを終了します'
+      end_message = HighLine.new
+      puts end_message.color('アプリを終了します。', :green)
       break
     end
   end

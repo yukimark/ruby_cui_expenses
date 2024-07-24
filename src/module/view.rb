@@ -1,27 +1,25 @@
 require 'highline/import'
-require 'pry'
 
 module View
   class << self
-    def line(i)
-      i.times do
+    def line(count)
+      count.times do
         puts '----------------------------------------------------------------------------------'
       end
     end
 
     def confirm(content: nil, message: '進めていいですか?')
-      if content.is_a?(ActiveRecord::Base) #modelを想定している
+      if content.is_a?(ActiveRecord::Base) # modelを想定している
         excluded_attributes = %w[id created_at updated_at]
         attributes = content.attributes.except(*excluded_attributes)
-        title = HighLine.new()
+        title = HighLine.new
         puts title.color('確認画面です。', :green)
         attributes.each do |key, value|
           puts "#{key}: #{value}"
         end
-        View.boolean(message)
-      else
-        View.boolean(message)
       end
+      View.line(2)
+      View.boolean(message)
     end
 
     def top
@@ -31,10 +29,7 @@ module View
         ';' => '終了する'
       }
 
-      choice = select_menu('メニューを選択してください。', choices)
-
-      selected_value = choice
-      selected_value
+      select_menu('メニューを選択してください。', choices)
     end
 
     def spend_category
@@ -45,9 +40,7 @@ module View
       }
 
       choice = select_menu('項目を選択してください。', choices)
-
-      selected_value = choices[choice]
-      selected_value
+      choices[choice]
     end
 
     def boolean(desc)
@@ -57,18 +50,17 @@ module View
       }
 
       choice = select_menu(desc, choices)
-      selected_value = choice == 'y' ? true : false
-      selected_value
+      choice == 'y'
     end
 
-    def spend_index(spends)
+    def spend_index(_spends)
       p Spend.all
-      # binding.pry
     end
   end
 end
 
 private
+
 def select_menu(message, choices)
   title = HighLine.new
   puts title.color(message, :green)
@@ -76,6 +68,5 @@ def select_menu(message, choices)
     say("#{key}: #{name}")
   end
 
-  choice = ask('選択肢に対応したキーを入力してください。') { |q| q.in = choices.keys }
-  choice
+  ask('選択肢に対応したキーを入力してください。') { |q| q.in = choices.keys }
 end
