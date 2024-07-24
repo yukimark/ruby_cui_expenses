@@ -1,1 +1,15 @@
 inherit_from: .rubocop_todo.yml
+
+Metrics/MethodLength:
+  Max: 30
+  Exclude:
+    - 'src/main.rb'
+
+Metrics/AbcSize:
+  Exclude:
+    - 'src/controller.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'Rakefile'
+

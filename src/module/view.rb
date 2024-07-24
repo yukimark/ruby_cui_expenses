@@ -3,8 +3,8 @@ require 'pry'
 
 module View
   class << self
-    def line(i)
-      i.times do
+    def line(count)
+      count.times do
         puts '----------------------------------------------------------------------------------'
       end
     end
@@ -63,7 +63,7 @@ module View
       selected_value
     end
 
-    def spend_index(spends)
+    def spend_index(_spends)
       p Spend.all
       # binding.pry
     end
