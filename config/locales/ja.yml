@@ -5,3 +5,5 @@ ja:
   price: '金額'
   fixedcost: '固定費'
   deferredpay: '後払い'
+  menu:
+    select: 'メニューを選択してください。'
