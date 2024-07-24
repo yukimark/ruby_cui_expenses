@@ -6,8 +6,7 @@ def add_spend
   spend = Spend.new
   spend.category = View.spend_category
   View.line(2)
-  title_price = HighLine.new
-  puts title_price.color('金額を入力してください。', :green)
+  View.color_message('金額を入力してください。', :green)
   spend.price = gets.chomp.to_i
   View.line(2)
   spend.fixedcost = View.boolean('固定費ですか?')
@@ -16,9 +15,9 @@ def add_spend
   View.line(2)
   if View.confirm(content: spend, message: '上記の内容で登録しますか?')
     spend.save
+    View.color_message('保存しました。', :green)
   else
-    error_message = HighLine.new
-    puts error_message.color('保存できませんでした。', :green)
+    View.color_message('保存できませんでした。', :green)
     nil
   end
 end

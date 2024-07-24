@@ -18,8 +18,7 @@ def main
       View.line(2)
     when ';'
       View.line(1)
-      end_message = HighLine.new
-      puts end_message.color('アプリを終了します。', :green)
+      View.color_message('アプリを終了します。', :green)
       break
     end
   end

@@ -8,12 +8,16 @@ module View
       end
     end
 
+    def color_message(message, color)
+      output_message = HighLine.new
+      puts output_message.color(message, color)
+    end
+
     def confirm(content: nil, message: '進めていいですか?')
       if content.is_a?(ActiveRecord::Base) # modelを想定している
         excluded_attributes = %w[id created_at updated_at]
         attributes = content.attributes.except(*excluded_attributes)
-        title = HighLine.new
-        puts title.color('確認画面です。', :green)
+        View.color_message('確認画面です。', :green)
         attributes.each do |key, value|
           puts "#{key}: #{value}"
         end
@@ -62,8 +66,7 @@ end
 private
 
 def select_menu(message, choices)
-  title = HighLine.new
-  puts title.color(message, :green)
+  View.color_message(message, :green)
   choices.each do |key, name|
     say("#{key}: #{name}")
   end
