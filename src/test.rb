@@ -1,4 +1,4 @@
-require "active_record"
+require 'active_record'
 require_relative 'module/db'
 require_relative 'models/spend'
 

@@ -19,11 +19,10 @@ def add_spend
   else
     error_message = HighLine.new
     puts error_message.color('保存できませんでした。', :green)
-    return
+    nil
   end
 end
 
 def all_spend
-  spends = Spend.all
-  spends
+  Spend.all
 end

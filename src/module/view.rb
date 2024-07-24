@@ -1,5 +1,4 @@
 require 'highline/import'
-require 'pry'
 
 module View
   class << self
@@ -30,10 +29,7 @@ module View
         ';' => '終了する'
       }
 
-      choice = select_menu('メニューを選択してください。', choices)
-
-      selected_value = choice
-      selected_value
+      select_menu('メニューを選択してください。', choices)
     end
 
     def spend_category
@@ -44,9 +40,7 @@ module View
       }
 
       choice = select_menu('項目を選択してください。', choices)
-
-      selected_value = choices[choice]
-      selected_value
+      choices[choice]
     end
 
     def boolean(desc)
@@ -56,13 +50,11 @@ module View
       }
 
       choice = select_menu(desc, choices)
-      selected_value = choice == 'y' ? true : false
-      selected_value
+      choice == 'y'
     end
 
     def spend_index(_spends)
       p Spend.all
-      # binding.pry
     end
   end
 end
@@ -76,6 +68,5 @@ def select_menu(message, choices)
     say("#{key}: #{name}")
   end
 
-  choice = ask('選択肢に対応したキーを入力してください。') { |q| q.in = choices.keys }
-  choice
+  ask('選択肢に対応したキーを入力してください。') { |q| q.in = choices.keys }
 end
