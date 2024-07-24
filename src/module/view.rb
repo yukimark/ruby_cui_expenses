@@ -1,4 +1,5 @@
 require 'highline/import'
+require_relative '../setup'
 
 module View
   class << self
@@ -19,7 +20,8 @@ module View
         attributes = content.attributes.except(*excluded_attributes)
         View.color_message('確認画面です。', :green)
         attributes.each do |key, value|
-          puts "#{key}: #{value}"
+          value_bool = value.is_a?(FalseClass) || value.is_a?(TrueClass)
+          puts "#{I18n.t(key)}: #{value_bool ? I18n.t(value) : value}"
         end
       end
       View.line(2)
