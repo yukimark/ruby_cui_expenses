@@ -1,9 +1,9 @@
 require_relative 'module/view'
 require_relative 'controller'
-require_relative 'module/db'
+require_relative 'setup'
 
 def main
-  DB.connect
+  setup
   loop do
     View.line(1)
     menu_str = View.top
@@ -18,8 +18,7 @@ def main
       View.line(2)
     when ';'
       View.line(1)
-      end_message = HighLine.new
-      puts end_message.color('アプリを終了します。', :green)
+      View.color_message('アプリを終了します。', :green)
       break
     end
   end
