@@ -24,7 +24,7 @@ module View
           puts "#{I18n.t(key)}: #{value_bool ? I18n.t(value) : value}"
         end
       end
-      View.line(2)
+      View.line(3)
       View.boolean(message)
     end
 

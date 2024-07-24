@@ -6,8 +6,14 @@ def add_spend
   spend = Spend.new
   spend.category = View.spend_category
   View.line(2)
-  View.color_message('金額を入力してください。', :green)
-  spend.price = gets.chomp.to_i
+  loop do
+    View.color_message('金額を入力してください。', :green)
+    spend.price = gets.chomp.to_i
+    break if spend.input_price_validate
+
+    View.line(2)
+    View.color_message('金額は1から999,999,999までの数字を入力する必要があります。', :red)
+  end
   View.line(2)
   spend.fixedcost = View.boolean('固定費ですか?')
   View.line(2)
