@@ -3,7 +3,7 @@ require_relative 'module/view'
 
 def add_spend
   View.line(2)
-  spend = Spend.new()
+  spend = Spend.new
   spend.category = View.spend_category
   View.line(2)
   title_price = HighLine.new
@@ -17,7 +17,8 @@ def add_spend
   if View.confirm(content: spend, message: '上記の内容で登録しますか?')
     spend.save
   else
-    puts '保存できませんでした。'
+    error_message = HighLine.new
+    puts error_message.color('保存できませんでした。', :green)
     return
   end
 end

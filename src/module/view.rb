@@ -13,17 +13,14 @@ module View
       if content.is_a?(ActiveRecord::Base) # modelを想定している
         excluded_attributes = %w[id created_at updated_at]
         attributes = content.attributes.except(*excluded_attributes)
-        title = HighLine.new()
+        title = HighLine.new
         puts title.color('確認画面です。', :green)
         attributes.each do |key, value|
           puts "#{key}: #{value}"
         end
-        View.line(2)
-        View.boolean(message)
-      else
-        View.line(2)
-        View.boolean(message)
       end
+      View.line(2)
+      View.boolean(message)
     end
 
     def top

@@ -13,3 +13,12 @@ Metrics/BlockLength:
   Exclude:
     - 'Rakefile'
 
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/NumericLiterals:
+  Exclude:
+    - 'db/schema.rb'
