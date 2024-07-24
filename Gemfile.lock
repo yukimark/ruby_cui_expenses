@@ -80,6 +80,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   highline
+  i18n
   pry (= 0.14.2)
   rake (= 13.2.1)
   rubocop
