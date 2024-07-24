@@ -13,3 +13,6 @@ gem 'rubocop', require: false
 
 # プロジェクト内コマンド
 gem 'rake', '13.2.1'
+
+# 翻訳
+gem 'i18n'

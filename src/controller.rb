@@ -13,12 +13,10 @@ def add_spend
   View.line(2)
   spend.deferredpay = View.boolean('カードなどの後払いですか?')
   View.line(2)
-  if View.confirm(content: spend, message: '上記の内容で登録しますか?')
-    spend.save
+  if View.confirm(content: spend, message: '上記の内容で登録しますか?') && spend.save
     View.color_message('保存しました。', :green)
   else
     View.color_message('保存できませんでした。', :green)
-    nil
   end
 end
 

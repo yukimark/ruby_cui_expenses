@@ -1,9 +1,9 @@
 require_relative 'module/view'
 require_relative 'controller'
-require_relative 'module/db'
+require_relative 'setup'
 
 def main
-  DB.connect
+  setup
   loop do
     View.line(1)
     menu_str = View.top

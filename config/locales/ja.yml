@@ -1,0 +1,7 @@
+ja:
+  true: 'はい'
+  false: 'いいえ'
+  category: '項目'
+  price: '金額'
+  fixedcost: '固定費'
+  deferredpay: '後払い'
