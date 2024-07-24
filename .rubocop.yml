@@ -1,5 +1,9 @@
 inherit_from: .rubocop_todo.yml
 
+AllCops:
+  Exclude:
+    - 'db/schema.rb'
+
 Metrics/MethodLength:
   Max: 30
   Exclude:
@@ -18,11 +22,3 @@ Style/Documentation:
 
 Style/FrozenStringLiteralComment:
   Enabled: false
-
-Style/NumericLiterals:
-  Exclude:
-    - 'db/schema.rb'
-
-Style/StringLiterals:
-  Exclude:
-    - 'db/schema.rb'
