@@ -60,15 +60,6 @@ module View
       choice == 'y'
     end
 
-    def delete_spend_menu
-      choices = {
-        'a' => '直前の1件を削除',
-        's' => 'IDを指定して削除'
-      }
-
-      select_menu(message: I18n.t('menu.select'), choices:)
-    end
-
     def spend_index(_spends)
       p Spend.all
     end

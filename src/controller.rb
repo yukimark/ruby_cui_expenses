@@ -25,9 +25,7 @@ def delete_spend_last
 end
 
 def delete_spend_find_id
-  View.line(2)
-  View.color_message('IDを入力してください。', :green)
-  id = gets.chomp.to_i
+  id = View::SpendView.spend_find_id
   begin
     spend = Spend.find(id)
   rescue StandardError
@@ -40,7 +38,6 @@ end
 private
 
 def delete_spend_confirm(spend)
-  View.line(2)
   if View.confirm(content: spend, message: '上記の内容を削除しますか?') && spend.delete
     View.success_message('削除しました。')
   else

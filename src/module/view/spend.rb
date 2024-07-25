@@ -41,8 +41,32 @@ module View
           Curses.clear
           break spend.price if spend.input_price_validate
 
-          View.color_message(message: '金額は1から999,999,999までの数字を入力する必要があります。', color: CURSES_COLOR_RED,
-                             y_coordinate: CURSES_Y_INITIAL - 1, x_coordinate: CURSES_X_INITIAL)
+          View.error_message('金額は1から999,999,999までの数字を入力する必要があります。')
+        end
+      end
+
+      def delete_spend_menu
+        choices = {
+          'a' => '直前の1件を削除',
+          's' => 'IDを指定して削除'
+        }
+
+        select_menu(message: I18n.t('menu.select'), choices:)
+      end
+
+      def spend_find_id
+        loop do
+          y = CURSES_Y_INITIAL
+          x = CURSES_X_INITIAL
+          Curses.setpos(y, x)
+          View.color_message(message: 'IDを入力してください。', color: CURSES_COLOR_GREEN)
+          Curses.refresh
+          Curses.setpos(y + 1, x)
+          id = Curses.getstr
+          Curses.clear
+          break id if id.to_i.is_a?(Integer)
+
+          View.error_message('数字を入力してください。')
         end
       end
     end

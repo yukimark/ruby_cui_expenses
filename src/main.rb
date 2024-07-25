@@ -28,7 +28,7 @@ def delete
     View.error_message('お小遣い帳のデータは0件です。')
     return
   end
-  menu_str = View.delete_spend_menu
+  menu_str = View::SpendView.delete_spend_menu
 
   case menu_str
   when 'a'
