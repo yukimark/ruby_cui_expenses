@@ -5,19 +5,13 @@ require_relative 'module/view/spend'
 def add_spend
   spend = Spend.new
   spend.category = View::SpendView.spend_category
-  loop do
-    View.color_message('金額を入力してください。', :green)
-    spend.price = gets.chomp.to_i
-    break if spend.input_price_validate
-
-    View.color_message('金額は1から999,999,999までの数字を入力する必要があります。', :red)
-  end
-  spend.fixedcost = View.boolean('固定費ですか?')
-  spend.deferredpay = View.boolean('カードなどの後払いですか?')
+  spend.price = View::SpendView.spend_price(spend)
+  spend.fixedcost = View.boolean(desc: '固定費ですか?')
+  spend.deferredpay = View.boolean(desc: 'カードなどの後払いですか?')
   if View.confirm(content: spend, message: '上記の内容で登録しますか?') && spend.save
-    View.color_message('保存しました。', :green)
+    View.color_message(message: '保存しました。', color: CURSES_COLOR_YELLOW, y_coordinate: CURSES_Y_INITIAL - 1, x_coordinate: CURSES_X_INITIAL)
   else
-    View.color_message('保存できませんでした。', :green)
+    View.color_message(message: '保存できませんでした。', color: CURSES_COLOR_RED, y_coordinate: CURSES_Y_INITIAL - 1, x_coordinate: CURSES_X_INITIAL)
   end
 end
 

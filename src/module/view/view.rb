@@ -14,14 +14,19 @@ module View
       if content.is_a?(ActiveRecord::Base) # modelを想定している
         excluded_attributes = %w[id created_at updated_at]
         attributes = content.attributes.except(*excluded_attributes)
-        View.color_message('確認画面です。', :green)
+        y = CURSES_Y_INITIAL
+        x = CURSES_X_INITIAL
+        Curses.setpos(y, x)
+        View.color_message(message: '確認画面です。', color: CURSES_COLOR_GREEN)
+        Curses.setpos(y += 1, x)
         attributes.each do |key, value|
           value_bool = value.is_a?(FalseClass) || value.is_a?(TrueClass)
-          puts "#{I18n.t(key)}: #{value_bool ? I18n.t(value) : value}"
+          Curses.addstr("#{I18n.t(key)}: #{value_bool ? I18n.t(value) : value}")
+          Curses.setpos(y += 1, x)
         end
       end
-      View.line(3)
-      View.boolean(message)
+      Curses.setpos(y += 1, x)
+      View.boolean(desc: message, y_coordinate: y, x_coordinate: x)
     end
 
     def top
@@ -35,7 +40,9 @@ module View
       select_menu(message: I18n.t('menu.select'), choices: choices)
     end
 
-    def boolean(desc)
+    def boolean(desc:, y_coordinate: CURSES_Y_INITIAL, x_coordinate: CURSES_X_INITIAL)
+      y = y_coordinate
+      x = x_coordinate
       choices = {
         'y' => 'Yes',
         'n' => 'No'
@@ -74,15 +81,14 @@ private
 def select_menu(message:, choices:, y_coordinate: CURSES_Y_INITIAL, x_coordinate: CURSES_X_INITIAL)
   input_key = nil
   loop do
-    y = 1
-    x = 1
+    y = y_coordinate
+    x = x_coordinate
     Curses.setpos(y, x)
     View.color_message(message: message, color: CURSES_COLOR_GREEN)
     Curses.setpos(y += 1, x)
     choices.each do |key, value|
       Curses.addstr("#{key}: #{value}")
-      y += 1
-      Curses.setpos(y, x)
+      Curses.setpos(y += 1, x)
     end
     Curses.setpos(y += 1, x)
     loop do

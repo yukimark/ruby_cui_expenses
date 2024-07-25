@@ -28,6 +28,23 @@ module View
         choice = select_menu(message: '項目を選択してください。', choices: choices)
         choices[choice]
       end
+
+      def spend_price(spend)
+        loop do
+          y = CURSES_Y_INITIAL
+          x = CURSES_X_INITIAL
+          Curses.setpos(y, x)
+          View.color_message(message: '金額を入力してください。', color: CURSES_COLOR_GREEN)
+          Curses.refresh
+          Curses.setpos(y += 1, x)
+          spend.price = Curses.getstr
+          Curses.clear
+          break spend.price if spend.input_price_validate
+
+          View.color_message(message: '金額は1から999,999,999までの数字を入力する必要があります。', color: CURSES_COLOR_RED,
+                             y_coordinate: CURSES_Y_INITIAL - 1, x_coordinate: CURSES_X_INITIAL)
+        end
+      end
     end
   end
 end
