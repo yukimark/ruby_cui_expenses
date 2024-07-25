@@ -1,14 +1,24 @@
-require 'active_record'
-require_relative 'module/db'
-require_relative 'models/spend'
+require 'curses'
+require 'pry'
 
-DB.connect
+Curses.init_screen
+begin
+  s = 'Hello World!'
+  Curses.setpos(Curses.lines / 2, Curses.cols / 2 - (s.length / 2))
+  Curses.addstr(s)
+  Curses.refresh
+  Curses.getstr
+ensure
+  Curses.close_screen
+end
 
-# モデルを生成
-Spend.create(category: '食費',
-             price: 123,
-             fixedcost: true,
-             deferredpay: true)
-
-# 表示
-p Spend.last
+Curses.init_screen
+begin
+  s = 'うんこ!'
+  Curses.setpos(Curses.lines / 2, Curses.cols / 2 - (s.length / 2))
+  Curses.addstr(s)
+  Curses.refresh
+  Curses.getstr
+ensure
+  Curses.close_screen
+end
