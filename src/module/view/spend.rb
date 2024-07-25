@@ -36,7 +36,7 @@ module View
           Curses.setpos(y, x)
           View.color_message(message: '金額を入力してください。', color: CURSES_COLOR_GREEN)
           Curses.refresh
-          Curses.setpos(y += 1, x)
+          Curses.setpos(y + 1, x)
           spend.price = Curses.getstr
           Curses.clear
           break spend.price if spend.input_price_validate
