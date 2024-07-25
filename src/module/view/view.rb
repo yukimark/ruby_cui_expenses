@@ -37,7 +37,7 @@ module View
         ';' => '終了する'
       }
 
-      select_menu(message: I18n.t('menu.select'), choices: choices)
+      select_menu(message: I18n.t('menu.select'), choices:)
     end
 
     def boolean(desc:, y_coordinate: CURSES_Y_INITIAL, x_coordinate: CURSES_X_INITIAL)
@@ -48,7 +48,7 @@ module View
         'n' => 'No'
       }
 
-      choice = select_menu(message: desc, choices: choices, y_coordinate: y, x_coordinate: x)
+      choice = select_menu(message: desc, choices:, y_coordinate: y, x_coordinate: x)
       choice == 'y'
     end
 
@@ -58,7 +58,7 @@ module View
         's' => 'IDを指定して削除'
       }
 
-      select_menu(message: I18n.t('menu.select'), choices: choices)
+      select_menu(message: I18n.t('menu.select'), choices:)
     end
 
     def spend_index(_spends)
@@ -84,7 +84,7 @@ def select_menu(message:, choices:, y_coordinate: CURSES_Y_INITIAL, x_coordinate
     y = y_coordinate
     x = x_coordinate
     Curses.setpos(y, x)
-    View.color_message(message: message, color: CURSES_COLOR_GREEN)
+    View.color_message(message:, color: CURSES_COLOR_GREEN)
     Curses.setpos(y += 1, x)
     choices.each do |key, value|
       Curses.addstr("#{key}: #{value}")
