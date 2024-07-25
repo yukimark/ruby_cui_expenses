@@ -32,7 +32,7 @@ module View
         ';' => '終了する'
       }
 
-      select_menu(I18n.t('menu.select'), choices)
+      select_menu(message: I18n.t('menu.select'), choices: choices)
     end
 
     def boolean(desc)
@@ -41,7 +41,7 @@ module View
         'n' => 'No'
       }
 
-      choice = select_menu(desc, choices)
+      choice = select_menu(message: desc, choices: choices, y_coordinate: y, x_coordinate: x)
       choice == 'y'
     end
 
@@ -51,7 +51,7 @@ module View
         's' => 'IDを指定して削除'
       }
 
-      select_menu(I18n.t('menu.select'), choices)
+      select_menu(message: I18n.t('menu.select'), choices: choices)
     end
 
     def spend_index(_spends)
@@ -71,7 +71,7 @@ end
 
 private
 
-def select_menu(message, choices)
+def select_menu(message:, choices:, y_coordinate: CURSES_Y_INITIAL, x_coordinate: CURSES_X_INITIAL)
   input_key = nil
   loop do
     y = 1

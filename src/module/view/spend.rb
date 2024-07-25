@@ -25,7 +25,7 @@ module View
           '.' => '未分類'
         }
 
-        choice = select_menu('項目を選択してください。', choices)
+        choice = select_menu(message: '項目を選択してください。', choices: choices)
         choices[choice]
       end
     end
