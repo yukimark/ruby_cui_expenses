@@ -1,5 +1,6 @@
 require_relative 'models/spend'
-require_relative 'module/view'
+require_relative 'module/view/view'
+require_relative 'module/view/spend'
 
 def add_spend
   spend = Spend.new

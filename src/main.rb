@@ -1,4 +1,4 @@
-require_relative 'module/view'
+require_relative 'module/view/view'
 require_relative 'controller'
 require_relative 'setup'
 
