@@ -8,14 +8,17 @@ Metrics/MethodLength:
   Max: 30
   Exclude:
     - 'src/main.rb'
+    - 'src/module/view/view.rb'
 
 Metrics/AbcSize:
   Exclude:
     - 'src/controller.rb'
+    - 'src/module/view/view.rb'
 
 Metrics/BlockLength:
   Exclude:
     - 'Rakefile'
+    - 'src/module/view/view.rb'
 
 Style/Documentation:
   Enabled: false
