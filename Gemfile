@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # メニュー画面
-gem 'highline'
+gem 'curses'
 
 # DB関連
 gem 'activerecord'
