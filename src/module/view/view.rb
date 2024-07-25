@@ -1,17 +1,13 @@
-require 'highline/import'
-require_relative '../setup'
+require_relative '../../setup'
 
 module View
   class << self
-    def line(count)
-      count.times do
-        puts '----------------------------------------------------------------------------------'
+    def color_message(message:, color:, y_coordinate: nil, x_coordinate: nil)
+      Curses.setpos(y_coordinate, x_coordinate) if y_coordinate.present? && x_coordinate.present?
+      Curses.attron(Curses.color_pair(color)) do
+        Curses.addstr(message)
       end
-    end
-
-    def color_message(message, color)
-      output_message = HighLine.new
-      puts output_message.color(message, color)
+      Curses.attrset(0)
     end
 
     def confirm(content: nil, message: '進めていいですか?')
@@ -37,32 +33,6 @@ module View
       }
 
       select_menu(I18n.t('menu.select'), choices)
-    end
-
-    def spend_category
-      choices = {
-        'a' => '食費',
-        's' => '日用品',
-        'd' => '趣味･娯楽',
-        'f' => '交際費',
-        'g' => '交通費',
-        'h' => '被服費',
-        'j' => '美容費',
-        'k' => '健康･医療',
-        'l' => '自動車',
-        'z' => '教養･教育',
-        'x' => '特別な支出',
-        'c' => '光熱費',
-        'v' => '通信費',
-        'b' => '住宅',
-        'n' => '税金･社会保険',
-        'm' => '保険',
-        ',' => 'その他',
-        '.' => '未分類'
-      }
-
-      choice = select_menu('項目を選択してください。', choices)
-      choices[choice]
     end
 
     def boolean(desc)
@@ -93,10 +63,37 @@ end
 private
 
 def select_menu(message, choices)
-  View.color_message(message, :green)
-  choices.each do |key, name|
-    say("#{key}: #{name}")
-  end
+  input_key = nil
+  loop do
+    y = 1
+    x = 1
+    Curses.setpos(y, x)
+    View.color_message(message: message, color: CURSES_COLOR_GREEN)
+    Curses.setpos(y += 1, x)
+    choices.each do |key, value|
+      Curses.addstr("#{key}: #{value}")
+      y += 1
+      Curses.setpos(y, x)
+    end
+    Curses.setpos(y += 1, x)
+    loop do
+      View.color_message(message: '選択肢に対応したキーを入力してください。', color: CURSES_COLOR_GREEN)
+      Curses.refresh
+      Curses.setpos(y += 1, x)
+      input_key = Curses.getstr
+      break input_key if choices.key?(input_key)
 
-  ask('選択肢に対応したキーを入力してください。') { |q| q.in = choices.keys }
+      Curses.setpos(y += 1, x)
+      View.color_message(message: 'キーが間違っています。', color: CURSES_COLOR_RED)
+      Curses.setpos(y += 1, x)
+      break if Curses.lines <= y
+    end
+    if Curses.lines <= y
+      Curses.clear
+      next
+    end
+    break input_key if choices.key?(input_key)
+  end
+  Curses.clear
+  input_key
 end
