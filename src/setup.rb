@@ -5,6 +5,9 @@ require 'curses'
 
 CURSES_COLOR_RED = 1
 CURSES_COLOR_GREEN = 2
+CURSES_COLOR_YELLOW = 3
+CURSES_Y_INITIAL = 2
+CURSES_X_INITIAL = 4
 
 def setup
   DB.connect
@@ -13,6 +16,7 @@ def setup
   Curses.start_color
   Curses.init_pair(CURSES_COLOR_RED, Curses::COLOR_RED, Curses::COLOR_BLACK)
   Curses.init_pair(CURSES_COLOR_GREEN, Curses::COLOR_GREEN, Curses::COLOR_BLACK)
+  Curses.init_pair(CURSES_COLOR_YELLOW, Curses::COLOR_YELLOW, Curses::COLOR_BLACK)
 end
 
 private
