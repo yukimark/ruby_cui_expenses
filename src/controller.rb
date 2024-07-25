@@ -9,11 +9,9 @@ def add_spend
   spend.fixedcost = View.boolean(desc: '固定費ですか?')
   spend.deferredpay = View.boolean(desc: 'カードなどの後払いですか?')
   if View.confirm(content: spend, message: '上記の内容で登録しますか?') && spend.save
-    View.color_message(message: '保存しました。', color: CURSES_COLOR_YELLOW, y_coordinate: CURSES_Y_INITIAL - 1,
-                       x_coordinate: CURSES_X_INITIAL)
+    View.success_message('保存しました。')
   else
-    View.color_message(message: '保存できませんでした。', color: CURSES_COLOR_RED, y_coordinate: CURSES_Y_INITIAL - 1,
-                       x_coordinate: CURSES_X_INITIAL)
+    View.error_message('保存できませんでした。')
   end
 end
 
@@ -33,7 +31,7 @@ def delete_spend_find_id
   begin
     spend = Spend.find(id)
   rescue StandardError
-    View.color_message('データが見つかりません。', :red)
+    View.error_message('データが見つかりません。')
     return
   end
   delete_spend_confirm(spend)
@@ -44,8 +42,8 @@ private
 def delete_spend_confirm(spend)
   View.line(2)
   if View.confirm(content: spend, message: '上記の内容を削除しますか?') && spend.delete
-    View.color_message('削除しました。', :red)
+    View.success_message('削除しました。')
   else
-    View.color_message('削除できませんでした。', :red)
+    View.error_message('削除できませんでした。')
   end
 end

@@ -25,8 +25,7 @@ end
 
 def delete
   if Spend.count.zero?
-    View.color_message(message: 'お小遣い帳のデータは0件です。', color: CURSES_COLOR_RED,
-                       y_coordinate: 0, x_coordinate: 1)
+    View.error_message('お小遣い帳のデータは0件です。')
     return
   end
   menu_str = View.delete_spend_menu
