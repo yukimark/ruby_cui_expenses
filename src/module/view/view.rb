@@ -11,11 +11,13 @@ module View
     end
 
     def success_message(message)
-      View.color_message(message:, color: CURSES_COLOR_YELLOW, y_coordinate: CURSES_Y_INITIAL - 1, x_coordinate: CURSES_X_INITIAL)
+      View.color_message(message:, color: CURSES_COLOR_YELLOW, y_coordinate: CURSES_Y_INITIAL - 1,
+                         x_coordinate: CURSES_X_INITIAL)
     end
 
     def error_message(message)
-      View.color_message(message:, color: CURSES_COLOR_RED, y_coordinate: CURSES_Y_INITIAL - 1, x_coordinate: CURSES_X_INITIAL)
+      View.color_message(message:, color: CURSES_COLOR_RED, y_coordinate: CURSES_Y_INITIAL - 1,
+                         x_coordinate: CURSES_X_INITIAL)
     end
 
     def confirm(content: nil, message: '進めていいですか?')
