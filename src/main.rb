@@ -16,9 +16,11 @@ def main
     when 'l'
       delete
     when ';'
+      View.shutdown
       break
     end
   end
+  Curses.close_screen
 end
 
 def delete

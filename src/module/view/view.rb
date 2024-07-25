@@ -57,6 +57,15 @@ module View
     def spend_index(_spends)
       p Spend.all
     end
+
+    def shutdown
+      y = CURSES_Y_INITIAL
+      x = CURSES_X_INITIAL
+      Curses.setpos(y, x)
+      View.color_message(message: '1秒後にアプリを終了します。', color: CURSES_COLOR_YELLOW)
+      Curses.refresh
+      sleep(0.7)
+    end
   end
 end
 
