@@ -7,7 +7,6 @@ module View
       Curses.attron(Curses.color_pair(color)) do
         Curses.addstr(message)
       end
-      Curses.attrset(0)
     end
 
     def success_message(message)
