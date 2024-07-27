@@ -7,7 +7,6 @@ module View
       Curses.attron(Curses.color_pair(color)) do
         Curses.addstr(message)
       end
-      Curses.attrset(0)
     end
 
     def success_message(message)
@@ -42,7 +41,7 @@ module View
     def top
       choices = {
         'a' => 'お小遣い帳入力',
-        's' => 'お小遣い帳一覧',
+        's' => 'お小遣い帳合計',
         'l' => 'お小遣い帳削除',
         ';' => '終了する'
       }
