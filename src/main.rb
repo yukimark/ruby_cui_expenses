@@ -11,8 +11,7 @@ def main
     when 'a'
       add_spend
     when 's'
-      spends = all_spend
-      View.spend_index(spends)
+      all_spend
     when 'l'
       delete
     when ';'
