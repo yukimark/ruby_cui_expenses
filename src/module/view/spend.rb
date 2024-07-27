@@ -45,6 +45,19 @@ module View
         end
       end
 
+      def sum_spend_price(sum_price)
+        y = CURSES_Y_INITIAL
+        x = CURSES_X_INITIAL
+        Curses.setpos(y, x)
+        Curses.addstr("これまでのお小遣い帳合計額は、#{sum_price}円です。")
+        Curses.setpos(y += 2, x)
+        Curses.addstr('任意のキー入力でトップ画面に戻ります。')
+        Curses.refresh
+        Curses.setpos(y + 1, x)
+        Curses.getch
+        Curses.clear
+      end
+
       def delete_spend_menu
         choices = {
           'a' => '直前の1件を削除',

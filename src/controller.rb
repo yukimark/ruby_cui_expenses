@@ -16,7 +16,8 @@ def add_spend
 end
 
 def all_spend
-  Spend.all
+  sum_price_spends = Spend.all.sum(:price)
+  View::SpendView.sum_spend_price(sum_price_spends)
 end
 
 def delete_spend_last
