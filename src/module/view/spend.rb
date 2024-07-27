@@ -64,11 +64,17 @@ module View
           Curses.setpos(y + 1, x)
           id = Curses.getstr
           Curses.clear
-          break id if id.to_i.is_a?(Integer)
+          break id if number?(id)
 
           View.error_message('数字を入力してください。')
         end
       end
     end
   end
+end
+
+private
+
+def number?(str)
+  str =~ /\A[0-9]+\z/
 end
